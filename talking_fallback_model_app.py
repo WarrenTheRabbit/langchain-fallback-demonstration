@@ -7,7 +7,7 @@ from langchain_core.prompts import ChatPromptTemplate
 from langchain_openai import ChatOpenAI
 from langchain.llms.fake import FakeStreamingListLLM
 from langchain_core.output_parsers import StrOutputParser
-from text import fallback_model_output
+from text import get_fallback_message
 
 
 DEFAULT_MODEL_NAME = "Click 'Start Streaming' to see how LangChain can do fallback from a model that is not working."
@@ -22,14 +22,14 @@ def initialize_session_state():
         st.session_state['streamed_text'] = ""
 
 
-def create_streaming_chain(openai_api_key, model_name):
+def create_streaming_chain(openai_api_key, model_name, topic):
     """Creates a chain that returns a joke on the provided topic. The LLM has
     a fallback to a fake model that does not reason."""
     
     prompt = ChatPromptTemplate.from_template("Tell me a joke about {topic}")
     ai_model = ChatOpenAI(api_key=openai_api_key, 
                           model=model_name)
-    fallback_model = FakeStreamingListLLM(responses=[fallback_model_output])
+    fallback_model = FakeStreamingListLLM(responses=[get_fallback_message(topic)])
     output_parser = StrOutputParser()
     return prompt | ai_model.with_fallbacks([fallback_model]) | output_parser
 
@@ -61,7 +61,7 @@ def main():
         st.session_state['streamed_text'] = ""
 
     if st.session_state['start_streaming']:
-        chain = create_streaming_chain(openai_api_key, model_name)
+        chain = create_streaming_chain(openai_api_key, model_name, topic)
         run_chain_and_stream_to_ui(chain, text_area, topic)
 
 

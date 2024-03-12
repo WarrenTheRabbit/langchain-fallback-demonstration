@@ -1,16 +1,16 @@
-fallback_model_output = """Hello, I am the fallback model. I am not an intelligent model. I always respond with the same text. 
+def get_fallback_message(topic):
+    return f"""Hello, I am the fallback model. I am not an intelligent model. I always respond with the same text. 
 
 Can you spot me? 
 
 ```python
 chain = prompt | ai_model.with_fallback([fallback_model]) | output_parser
 ```
-                                                          
-
+                                            
 
 I am writing to you because the primary model has failed. The following prompt was sent:
 
-> Tell me a joke about {your input}.
+> Tell me a joke about {topic}.
 
 But you didn't get a result from the OpenAI API endpoint it was passed to.
 
