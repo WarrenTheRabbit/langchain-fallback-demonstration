@@ -1,11 +1,13 @@
 fallback_model_output = """Hello, I am the fallback model. 
 
-Can you spot me?
+Can you spot me? 
 
 ```python
 chain = prompt | ai_model.with_fallback([fallback_model]) | output_parser
 ```
                                                           
+I am not an intelligent model. I always respond with the same text. 
+
 I am writing to you because the primary model has failed. The following prompt was sent:
 
 > Tell me a joke about bears.
