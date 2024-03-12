@@ -1,12 +1,13 @@
 def get_fallback_message(topic):
-    return f"""Hello, I am the fallback model. I am not an intelligent model. I always respond with the same text. 
+    return f"""Hello, I am the fallback model. 
 
 Can you spot me? 
 
 ```python
 chain = prompt | ai_model.with_fallback([fallback_model]) | output_parser
 ```
-                                            
+                      
+In this case, I am not an intelligent model. I will always respond with the same text. But it _is_ possible to fallback to an intelligent model.                      
 
 I am writing to you because the primary model has failed. The following prompt was sent:
 
