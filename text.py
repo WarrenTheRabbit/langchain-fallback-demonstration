@@ -37,6 +37,8 @@ The LangChain Expression Language (LCEL) has some nice features out-of-the-box:
 - streaming
 - batching
 
+--- 
+
 Fallback is an example of out-of-the-box configurability. I'll show you the mechanism for introducing fallback onto a component of an LCEL-style chain very soon. It is also possible to apply fallback to an entire chain.
 
 ---
