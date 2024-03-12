@@ -10,7 +10,7 @@ chain = prompt | ai_model.with_fallback([fallback_model]) | output_parser
 
 I am writing to you because the primary model has failed. The following prompt was sent:
 
-> Tell me a joke about bears.
+> Tell me a joke about {your input}.
 
 But you didn't get a result from the OpenAI API endpoint it was passed to.
 
